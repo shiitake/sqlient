@@ -1,0 +1,3 @@
+language: csharp
+script:
+  - xbuild /p:Configuration=Release /p:TargetFrameworkVersion="v4.5" SQLient/SQLient.sln
