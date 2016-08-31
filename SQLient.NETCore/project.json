@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "compilerName": "fsc",
+    "compile": {
+      "includeFiles": [
+        "CommonLibrary.fs",
+        "Helper.fs",
+        "CommandLine.fs",
+        "ValidateRequest.fs",
+        "ServerConnection.fs",
+        "RequestHandler.fs",
+        "Program.fs"
+      ]
+    }
+  },
+  "dependencies":{
+    "System.Data.SqlClient":"4.1.0-rc2-24027",
+    "CoreCompat.System.Configuration":"4.2.3-r4*"
+  },
+  "tools": {
+    "dotnet-compile-fsc":"1.0.0-preview2-*"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        },
+        "Microsoft.FSharp.Core.netcore": "1.0.0-alpha-160629"
+      }
+    }
+  }
+}
