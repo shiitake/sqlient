@@ -20,11 +20,11 @@ I've also added a .NET Core version of the application that can be found in the 
 NOTE: make sure .NET Core is installed.
 
 1. Navigate to the SQLient.NETCore folder
-2. Restore the packages
-    dotnet restore
-3. Build the project
-    dotnet build
-4. Run the program
-    dotnet run
+2. Restore the packages  
+    ```dotnet restore```
+3. Build the project  
+    ```dotnet build```
+4. Run the program  
+    ```dotnet run```
 5. Pass the same options above
 
