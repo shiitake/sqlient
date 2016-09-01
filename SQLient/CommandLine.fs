@@ -6,25 +6,6 @@ module CommandLine =
     open CommonLibrary
     open Helper
 
-    let getPassword =        
-        let rec readMask pw =
-            let k = Console.ReadKey()
-            match k.Key with
-            | ConsoleKey.Enter -> pw
-            | ConsoleKey.Escape -> pw
-            | ConsoleKey.Backspace -> 
-                match pw with
-                | [] -> readMask []
-                | _::t ->
-                    Console.Write " \b"
-                    readMask t
-            | _ ->
-                Console.Write "\b*"
-                readMask (k.KeyChar::pw)
-        let password = readMask [] |> Seq.rev |> String.Concat
-        Console.WriteLine ()
-        password
-
     let rec parseCommandLineRec args optionsSoFar =
         match args with
             | [] ->                

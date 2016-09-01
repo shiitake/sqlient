@@ -14,8 +14,8 @@ module Main =
         0    
 
     let handleRequest options =
-        RequestHandler.handle options
-        0
+        handle options 
+        
 
     [<EntryPoint>]
     let main args =         
@@ -25,4 +25,5 @@ module Main =
                 printHelp()                
             | _ ->
                 let options = CommandLine.parseCommandLine arglist                
-                handleRequest options
+                handleRequest options |> ignore
+                0

@@ -96,11 +96,23 @@ module ServerConnection =
         let builder = new SqlConnectionStringBuilder()        
         builder.DataSource <- getServername request
         builder.IntegratedSecurity <- false
-        builder.NetworkLibrary <- "dbmssocn"
+        //builder.NetworkLibrary <- "dbmssocn"
         builder.UserID <- request.userid        
         builder.Password <- request.password        
         builder.InitialCatalog <- request.database        
         builder.ToString()
+
+//    let readConnStringFromFile = 
+//        let localPath = System.IO.GetCurrentDirectory()
+//        let configExists = 
+//        //check if config exist
+//    
+//    
+//    let saveConnStringToFile request =
+//        //check if config exist
+//        //if exists read config and compare changes
+//        //write new config
+//        request
 
     let connectToServer request =
         let connString = buildConnString request

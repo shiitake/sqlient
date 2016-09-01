@@ -17,7 +17,10 @@
   },
   "dependencies":{
     "System.Data.SqlClient":"4.1.0-rc2-24027",
-    "CoreCompat.System.Configuration":"4.2.3-r4*"
+    "CoreCompat.System.Configuration": "4.2.3-r4*",
+    "System.IO.FileSystem": "4.0.1",
+    "System.IO.FileSystem.Primitives": "4.0.1",
+    "Newtonsoft.Json": "9.0.1"
   },
   "tools": {
     "dotnet-compile-fsc":"1.0.0-preview2-*"
