@@ -95,7 +95,7 @@ module ServerConnection =
     let buildConnString request =
         let builder = new SqlConnectionStringBuilder()        
         builder.DataSource <- getServername request
-        builder.IntegratedSecurity <- false
+        //builder.IntegratedSecurity <- false
         //builder.NetworkLibrary <- "dbmssocn"
         builder.UserID <- request.userid        
         builder.Password <- request.password        
