@@ -103,10 +103,7 @@ module ServerConnection =
         builder.ToString()
 
     let connectToServer request =
-        let connString = buildConnString request
-        #if DEBUG
-        printfn "Connection string: %A" connString
-        #endif 
+        let connString = buildConnString request         
         let query = 
             if request.query = "" then
                 sqlCom
