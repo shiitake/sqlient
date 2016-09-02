@@ -5,7 +5,39 @@ open System
 [<AutoOpen>]
 module CommonLibrary =
 
-    type CommandLineOptions = {
+    type Connection = {
+        Name: string;
+        ServerName: string;
+        Port: int;
+        Database: string;
+        UserId: string;
+        Password: string;
+        ConnectionString: string;        
+    }
+    
+    type ConnectionInfo = {
+        Connection: Connection;
+        SaveConnection: string option;
+        DisplayConnection: bool;
+    }    
+
+    type Query = {
+        name: string;
+        SQLQuery: string;
+    }
+
+    type Parameters = {
+        ConnectionInfo: ConnectionInfo;
+        Query: Query;
+    }
+
+    type Configuration = {
+        //array of connection strings
+        Connections: 
+        //array of queries
+    }
+
+    type CommandLineOptions = {        
         servername: string;
         port: int;
         database: string;
@@ -14,8 +46,8 @@ module CommonLibrary =
         query: string;
         valid: bool;
         saveConnection: string;
-        displayConnection: bool;
-        }
+        displayConnection: bool;        
+    }
 
     //setting up error handling
     type Results<'TSuccess, 'TFailure> = 

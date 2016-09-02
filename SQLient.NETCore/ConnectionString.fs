@@ -11,8 +11,14 @@ module ConnectionString =
     let getServername request =
         "tcp:" + request.servername + "," + request.port.ToString()
 
+//this is a dead-end
     let displayConnectionString builder =
         printfn "Connection string: %A" (builder.ToString())
+
+//this is a dead-end
+    let SaveConnectionString request =
+        printfn "Saving connection to file: %A" request.saveConnection
+
 
     let buildConnString request =
         let builder = new SqlConnectionStringBuilder()        
@@ -26,4 +32,6 @@ module ConnectionString =
             displayConnectionString builder
             builder
         else builder
+
+
 
