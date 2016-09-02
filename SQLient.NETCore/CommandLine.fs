@@ -6,25 +6,6 @@ module CommandLine =
     open CommonLibrary
     open Helper
 
-    let getPassword =        
-        let rec readMask pw =
-            let k = Console.ReadKey()
-            match k.Key with
-            | ConsoleKey.Enter -> pw
-            | ConsoleKey.Escape -> pw
-            | ConsoleKey.Backspace -> 
-                match pw with
-                | [] -> readMask []
-                | _::t ->
-                    Console.Write " \b"
-                    readMask t
-            | _ ->
-                Console.Write "\b*"
-                readMask (k.KeyChar::pw)
-        let password = readMask [] |> Seq.rev |> String.Concat
-        Console.WriteLine ()
-        password
-
     let rec parseCommandLineRec args optionsSoFar =
         match args with
             | [] ->                
@@ -54,7 +35,18 @@ module CommandLine =
                 match xs with
                 | x::xss ->                    
                     let newOptionsSoFar = { optionsSoFar with port=(int x)}
-                    parseCommandLineRec xss newOptionsSoFar                
+                    parseCommandLineRec xss newOptionsSoFar
+            | "/display"::xs ->                   
+                let newOptionsSoFar = { optionsSoFar with displayConnection=true}
+                parseCommandLineRec xs newOptionsSoFar
+            | "/save"::xs ->                   
+                match xs with
+                | x::xss ->
+                    let newOptionsSoFar = { optionsSoFar with saveConnection=x}
+                    parseCommandLineRec xss newOptionsSoFar
+                | _ ->
+                    let newOptionsSoFar = { optionsSoFar with saveConnection="default"}
+                    parseCommandLineRec xs newOptionsSoFar
             | "/PW"::xs | "/pw"::xs->
                 match xs with
                 | x::xss ->
@@ -77,6 +69,8 @@ module CommandLine =
             userid = "";
             password = "";
             query = "";
-            valid = true
+            valid = true;
+            saveConnection = "";
+            displayConnection = false;
             }
         parseCommandLineRec args defaultOptions

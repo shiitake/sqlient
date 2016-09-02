@@ -9,6 +9,7 @@
         "Helper.fs",
         "CommandLine.fs",
         "ValidateRequest.fs",
+        "ConnectionString.fs",
         "ServerConnection.fs",
         "RequestHandler.fs",
         "Program.fs"

@@ -56,9 +56,10 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="CommonLibrary.fs" />
-    <Compile Include="Helper.fs" />
+    <Compile Include="Helper.fs" />    
     <Compile Include="CommandLine.fs" />
     <Compile Include="ValidateRequest.fs" />
+    <Compile Include="ConnectionString.fs" />
     <Compile Include="ServerConnection.fs" />
     <Compile Include="RequestHandler.fs" />
     <Compile Include="Program.fs" />

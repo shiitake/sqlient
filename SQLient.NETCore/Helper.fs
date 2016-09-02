@@ -15,3 +15,21 @@ module Helper =
         printfn "\t/PW /pw [Password]\t\tUser password"
         printfn "\t/Q /q [Query]\t\t\tSQL Query to be executed"
 
+    let getPassword =        
+        let rec readMask pw =
+            let k = System.Console.ReadKey()
+            match k.Key with
+            | System.ConsoleKey.Enter -> pw
+            | System.ConsoleKey.Escape -> pw
+            | System.ConsoleKey.Backspace -> 
+                match pw with
+                | [] -> readMask []
+                | _::t ->
+                    System.Console.Write " \b"
+                    readMask t
+            | _ ->
+                System.Console.Write "\b*"
+                readMask (k.KeyChar::pw)
+        let password = readMask [] |> Seq.rev |> System.String.Concat
+        System.Console.WriteLine ()
+        password

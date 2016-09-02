@@ -7,9 +7,9 @@ module ServerConnection =
     open System.Configuration
     open System.Data
     open CommonLibrary
+    open ConnectionString
 
-    let sqlCom = "SELECT top 10 * FROM message"
-    let tcpHeader = "tcp:"
+    let sqlCom = "SELECT top 10 * FROM message"    
 
     let columnHeaders (record : IDataReader) =
         let columnCount = record.FieldCount
@@ -87,20 +87,7 @@ module ServerConnection =
             for i in 0 .. columnCount-1 do            
                 yield getColumnData i            
         ]
-        columnList
-    
-    let getServername request =
-        "tcp:" + request.servername + "," + request.port.ToString()
-
-    let buildConnString request =
-        let builder = new SqlConnectionStringBuilder()        
-        builder.DataSource <- getServername request
-        builder.IntegratedSecurity <- false
-        //builder.NetworkLibrary <- "dbmssocn"
-        builder.UserID <- request.userid        
-        builder.Password <- request.password        
-        builder.InitialCatalog <- request.database        
-        builder.ToString()
+        columnList  
 
 //    let readConnStringFromFile = 
 //        let localPath = System.IO.GetCurrentDirectory()
@@ -115,16 +102,13 @@ module ServerConnection =
 //        request
 
     let connectToServer request =
-        let connString = buildConnString request
-        #if DEBUG
-        printfn "Connection string: %A" connString
-        #endif 
+        let connString = buildConnString request         
         let query = 
             if request.query = "" then
                 sqlCom
             else
                 request.query
-        use conn = new SqlConnection(connString)
+        use conn = new SqlConnection(connString.ToString())
         
         let conn = openConnection conn
         
