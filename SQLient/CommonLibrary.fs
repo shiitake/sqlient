@@ -5,6 +5,39 @@ open System
 [<AutoOpen>]
 module CommonLibrary =
 
+    type Connection = {
+        Name: string;
+        ServerName: string;
+        Port: int;
+        Database: string;
+        UserId: string;
+        Password: string;
+        ConnectionString: string;        
+    }
+    
+    type ConnectionInfo = {
+        Connection: Connection;
+        SaveConnection: string option;
+        DisplayConnection: bool;
+    }    
+
+    type Query = {
+        name: string;
+        SQLQuery: string;
+    }
+
+    type Parameters = {
+        ConnectionInfo: ConnectionInfo;
+        Query: Query;
+    }
+
+    type Configuration = {
+        //array of connection strings
+        Connections: Connection[];
+        //array of queries
+        Queries: Query[]
+    }
+
     type CommandLineOptions = {
         servername: string;
         port: int;
@@ -12,7 +45,9 @@ module CommonLibrary =
         userid: string;
         password: string;
         query: string;
-        valid: bool        
+        valid: bool;
+        displayConnection: bool;
+        saveConnection: string        
         }
 
     //scoffolding for two track execution

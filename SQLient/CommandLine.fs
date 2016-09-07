@@ -35,7 +35,18 @@ module CommandLine =
                 match xs with
                 | x::xss ->                    
                     let newOptionsSoFar = { optionsSoFar with port=(int x)}
-                    parseCommandLineRec xss newOptionsSoFar                
+                    parseCommandLineRec xss newOptionsSoFar
+            | "/display"::xs ->                   
+                let newOptionsSoFar = { optionsSoFar with displayConnection=true}
+                parseCommandLineRec xs newOptionsSoFar
+            | "/save"::xs ->                   
+                match xs with
+                | x::xss ->
+                    let newOptionsSoFar = { optionsSoFar with saveConnection=x}
+                    parseCommandLineRec xss newOptionsSoFar
+                | _ ->
+                    let newOptionsSoFar = { optionsSoFar with saveConnection="default"}
+                    parseCommandLineRec xs newOptionsSoFar                
             | "/PW"::xs | "/pw"::xs->
                 match xs with
                 | x::xss ->
@@ -46,6 +57,9 @@ module CommandLine =
                     let pw = getPassword
                     let newOptionsSoFar = { optionsSoFar with password=pw}
                     parseCommandLineRec xs newOptionsSoFar
+            | "/H"::xs | "/h"::xs ->
+                //let's ignore this for now
+                parseCommandLineRec xs optionsSoFar
             | x::xs ->
                 eprintfn "Option '%s' is unrecognized" x
                 parseCommandLineRec xs optionsSoFar
@@ -58,6 +72,8 @@ module CommandLine =
             userid = "";
             password = "";
             query = "";
-            valid = true
+            valid = true;
+            displayConnection = false;
+            saveConnection = ""
             }
         parseCommandLineRec args defaultOptions

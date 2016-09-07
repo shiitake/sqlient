@@ -24,6 +24,10 @@ module Main =
             | 0 ->                                
                 printHelp()                
             | _ ->
-                let options = CommandLine.parseCommandLine arglist                
-                handleRequest options |> ignore
-                0
+                match arglist with
+                    | "/H"::xs | "/h"::xs ->
+                        printHelp()
+                    | _ -> 
+                        let options = CommandLine.parseCommandLine arglist                
+                        handleRequest options |> ignore
+                        0
