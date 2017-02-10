@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": true,
@@ -16,31 +16,41 @@
       ]
     }
   },
-  "dependencies":{
-    "Microsoft.NETCore.App":"1.0.0",
-    "Microsoft.FSharp.Core.netcore": "1.0.0-alpha-160629",
-    "System.Data.SqlClient":"4.1.0-rc2-24027",
+  "dependencies": {
     "CoreCompat.System.Configuration": "4.2.3-r4*",
+    "FSharp.Core": "4.0.1.7-alpha",
+    "Microsoft.FSharp.Core.netcore": "1.0.0-alpha-160629",
+    "Microsoft.NETCore.App": "1.0.0",
+    "System.Data.SqlClient": "4.1.0-rc2-24027",
     "System.IO.FileSystem": "4.0.1",
     "System.IO.FileSystem.Primitives": "4.0.1",
     "System.Runtime.Serialization.Json": "4.0.2",
-    "System.Runtime.Serialization.Xml": "4.1.1" 
+    "System.Runtime.Serialization.Xml": "4.1.1"
   },
   "tools": {
-    "dotnet-compile-fsc":"1.0.0-preview2-*"
+    "dotnet-compile-fsc": "1.0.0-preview2-*"
   },
   "frameworks": {
-    "netcoreapp1.0": { }
+    "netcoreapp1.0": {}
   },
   "runtimes": {
     "osx.10.10-x64": {
-      "#import": [ "osx.10.10", "osx-x64" ]
+      "#import": [
+        "osx.10.10",
+        "osx-x64"
+      ]
     },
     "win10-x64": {
-      "#import": [ "win10", "win81-x64" ]
+      "#import": [
+        "win10",
+        "win81-x64"
+      ]
     },
     "osx.10.11-x64": {
-      "#import": [ "osx.10.11", "osx.10.10-x64" ]
-    }    
+      "#import": [
+        "osx.10.11",
+        "osx.10.10-x64"
+      ]
+    }
   }
 }

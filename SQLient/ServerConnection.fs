@@ -102,7 +102,9 @@ module ServerConnection =
 //        request
 
     let connectToServer request =
-        let connString = buildConnString request         
+        let connString = buildConnString request
+        if (request.displayConnection) then
+            displayConnectionString connString
         let query = 
             if request.query = "" then
                 sqlCom
